@@ -5,7 +5,7 @@ node('workers'){
             credentialsId: 'github-ssh',
             url: 'git@github.com:garikl1/mloader.git'
         }
-        stage('') {
+        stage('Unit Tests') {
           sh "docker build -t ${imageName}-test -f Dockerfile.test ."
           sh "docker run --rm ${imageName}-test"
         }
