@@ -7,9 +7,9 @@ node('workers'){
         }
         stage('Unit Tests') {
           def imageTest = docker.build("${imageName}-test", "-f Dockerfile.test .")
-          sh "docker run --rm -v $WORKSPACE/reports:/app/reports ${imageName}-test"
-          sh "sudo chown ec2-user:ec2-user $WORKSPACE/reports/ -R"
-          junit "$WORKSPACE/reports/*.xml"
+          sh "docker run --rm -v $PWD/reports:/app/reports ${imageName}-test"
+          sh "sudo chown ec2-user:ec2-user $PWD/reports/ -R"
+          junit "**/reports/*.xml"
         }
 
 }
